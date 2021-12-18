@@ -11,6 +11,7 @@ import { ProcnominaComponent } from './procnomina/procnomina.component';
 import { ConstribucionleyComponent } from './constribucionley/constribucionley.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
+import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SharedModule } from '../shared/shared.module';
     DeduccionesComponent,
     ProcnominaComponent,
     ConstribucionleyComponent,
-    PagesComponent
+    PagesComponent,
+    AcountSettingsComponent
   ],
   imports: [
     CommonModule,

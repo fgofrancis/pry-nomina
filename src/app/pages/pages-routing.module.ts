@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
 
 import { AsignacionesComponent } from './asignaciones/asignaciones.component';
 import { ConstribucionleyComponent } from './constribucionley/constribucionley.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path:'escala', component:EscalasalarialComponent},
       { path:'parametros', component:ParametrosgeneralesComponent},
       { path:'prcnomina', component:ProcnominaComponent},
+      { path:'acount-setting', component: AcountSettingsComponent},
       { path:'', component:EmpleadoComponent}
     ]
     
