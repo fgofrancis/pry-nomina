@@ -12,6 +12,7 @@ import { ConstribucionleyComponent } from './constribucionley/constribucionley.c
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AcountSettingsComponent } from './acount-settings/acount-settings.compo
     ProcnominaComponent,
     ConstribucionleyComponent,
     PagesComponent,
-    AcountSettingsComponent
+    AcountSettingsComponent,
+    RxjsComponent
   ],
   imports: [
     CommonModule,

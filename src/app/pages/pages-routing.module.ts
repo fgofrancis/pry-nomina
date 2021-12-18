@@ -10,20 +10,22 @@ import { EscalasalarialComponent } from './escalasalarial/escalasalarial.compone
 import { PagesComponent } from './pages.component';
 import { ParametrosgeneralesComponent } from './parametrosgenerales/parametrosgenerales.component';
 import { ProcnominaComponent } from './procnomina/procnomina.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 const routes: Routes = [
   { 
     path:'', component: PagesComponent,
     children:[
-      { path:'asignaciones', component:AsignacionesComponent},
-      { path:'constribuciones', component:ConstribucionleyComponent},
-      { path:'deducciones', component:DeduccionesComponent},
-      { path:'empleado', component:EmpleadoComponent},
-      { path:'escala', component:EscalasalarialComponent},
-      { path:'parametros', component:ParametrosgeneralesComponent},
-      { path:'prcnomina', component:ProcnominaComponent},
-      { path:'acount-setting', component: AcountSettingsComponent},
-      { path:'', component:EmpleadoComponent}
+      { path:'', component:EmpleadoComponent, data:{titulo: 'Empleado'}},
+      { path:'asignaciones', component:AsignacionesComponent, data:{titulo: 'Asignaciones'}},
+      { path:'constribuciones', component:ConstribucionleyComponent, data:{titulo: 'Constribuciones de Ley'}},
+      { path:'deducciones', component:DeduccionesComponent, data:{titulo: 'Deducciones'}},
+      { path:'empleado', component:EmpleadoComponent, data:{titulo: 'Empleado'}},
+      { path:'escala', component:EscalasalarialComponent, data:{titulo: 'Escala Salarial'}},
+      { path:'parametros', component:ParametrosgeneralesComponent, data:{titulo: 'Parámetros Generales'}},
+      { path:'prcnomina', component:ProcnominaComponent, data:{titulo: 'Generaciòn de Nòmina'}},
+      { path:'acount-setting', component: AcountSettingsComponent, data:{titulo: 'Configuraciòn'}},
+      { path:'rxjs', component: RxjsComponent, data:{titulo: 'Rxjs'}}
     ]
     
   }

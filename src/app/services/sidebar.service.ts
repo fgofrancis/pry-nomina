@@ -12,7 +12,8 @@ export class SidebarService {
       submenu:[
         {titulo: 'Empleado', url:'/nomina/empleado'},
         {titulo: 'Escala Salarial', url:'/nomina/escala'},
-        {titulo: 'Parámetros Generales', url:'/nomina/parametros'}
+        {titulo: 'Parámetros Generales', url:'/nomina/parametros'},
+        {titulo: 'Rxjs', url:'/nomina/rxjs'}
       ]
     },
     // {
