@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
+import { AuthGuard } from '../guards/auth.guard';
 
+import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
 import { AsignacionesComponent } from './asignaciones/asignaciones.component';
 import { ConstribucionleyComponent } from './constribucionley/constribucionley.component';
 import { DeduccionesComponent } from './deducciones/deducciones.component';
@@ -15,6 +16,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 const routes: Routes = [
   { 
     path:'', component: PagesComponent,
+    canActivate:[ AuthGuard],
     children:[
       { path:'', component:EmpleadoComponent, data:{titulo: 'Empleado'}},
       { path:'asignaciones', component:AsignacionesComponent, data:{titulo: 'Asignaciones'}},
