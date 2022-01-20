@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-
+ 
       // La peticion se subcribe y el mismo maneja el unsubcribe y todo
     return this._usuarioService.validarToken()
             .pipe(

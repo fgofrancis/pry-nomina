@@ -10,6 +10,7 @@ import { EmpleadoComponent } from './empleado/empleado.component';
 import { EscalasalarialComponent } from './escalasalarial/escalasalarial.component';
 import { PagesComponent } from './pages.component';
 import { ParametrosgeneralesComponent } from './parametrosgenerales/parametrosgenerales.component';
+import { PerfilComponent } from './perfil/perfil.component';
 import { ProcnominaComponent } from './procnomina/procnomina.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
@@ -27,7 +28,8 @@ const routes: Routes = [
       { path:'parametros', component:ParametrosgeneralesComponent, data:{titulo: 'Parámetros Generales'}},
       { path:'prcnomina', component:ProcnominaComponent, data:{titulo: 'Generaciòn de Nòmina'}},
       { path:'acount-setting', component: AcountSettingsComponent, data:{titulo: 'Configuraciòn'}},
-      { path:'rxjs', component: RxjsComponent, data:{titulo: 'Rxjs'}}
+      { path:'rxjs', component: RxjsComponent, data:{titulo: 'Rxjs'}},
+      { path:'perfil', component: PerfilComponent, data:{titulo: 'Perfil de usuario'}}
     ]
     
   }

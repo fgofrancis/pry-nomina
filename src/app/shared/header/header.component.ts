@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -9,7 +10,12 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class HeaderComponent  {
 
-  constructor( private _ususuarioService:UsuarioService) { }
+  public usuario!: Usuario;
+
+  constructor( private _ususuarioService:UsuarioService) {
+    this.usuario = _ususuarioService.usuario;
+    
+   }
 
   logout(){
 

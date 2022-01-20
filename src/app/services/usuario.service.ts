@@ -1,13 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap,map, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { environment } from 'src/environments/environment';
 
 import { LoginForm } from '../interfaces/login-form';
-import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
+import { Usuario }  from '../models/usuario.model';
 
 const base_url = environment.base_url;
 declare const gapi:any;
@@ -18,12 +19,20 @@ declare const gapi:any;
 export class UsuarioService {
 
   public auth2:any;
+  public usuario!:Usuario;
 
   constructor(private http:HttpClient,
               private _router:Router,
               private _ngZone:NgZone) {
     
     this.googleIni();
+  }
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid():string {
+    return this.usuario.uid || '';
   }
 
   googleIni(){
@@ -57,18 +66,22 @@ export class UsuarioService {
 
   validarToken():Observable<boolean>{
 
-    const token = localStorage.getItem('token') || '';
-
-    return this.http.get(`${base_url}/login/renew`, {
+   return this.http.get(`${base_url}/login/renew`, {
       headers: {
-        'x-token': token
+        'x-token': this.token
       }
     }).pipe(
       tap( (resp:any) =>{
+        // console.log(resp);
+        const {companiaID, name, email, role, google, img, uid } = resp.usuarioDB
+        this.usuario = new Usuario(companiaID,name,email,'',img,google,role,uid);
+
         localStorage.setItem('token',resp.token)
       }),
       map(resp => true),
-      catchError( error=> of(false) )  
+      catchError( error=> {
+        console.log(error)
+        return of(false)} )  
     );
 
 
@@ -83,6 +96,21 @@ export class UsuarioService {
       })
     )
   };
+
+  actualizarPerfil( data:{name:string, email:string, role:string, companiaID:string} ){
+
+    data = {
+      ...data,
+      role: this.usuario.role!,
+      companiaID: this.usuario.companiaID!
+    };
+    // http://localhost:3000/api/usuarios/61cb871217e594cb891cb502 met= put, body
+    return this.http.put(`${base_url}/usuarios/${this.uid}`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    });
+  }
 
   login(formData: LoginForm){
     
