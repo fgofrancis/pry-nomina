@@ -13,6 +13,7 @@ import { ParametrosgeneralesComponent } from './parametrosgenerales/parametrosge
 import { PerfilComponent } from './perfil/perfil.component';
 import { ProcnominaComponent } from './procnomina/procnomina.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 const routes: Routes = [
   { 
@@ -29,7 +30,8 @@ const routes: Routes = [
       { path:'prcnomina', component:ProcnominaComponent, data:{titulo: 'Generaciòn de Nòmina'}},
       { path:'acount-setting', component: AcountSettingsComponent, data:{titulo: 'Configuraciòn'}},
       { path:'rxjs', component: RxjsComponent, data:{titulo: 'Rxjs'}},
-      { path:'perfil', component: PerfilComponent, data:{titulo: 'Perfil de usuario'}}
+      { path:'perfil', component: PerfilComponent, data:{titulo: 'Perfil de usuario'}},
+      { path:'usuario', component: UsuariosComponent, data:{titulo: 'Usuarios'}}
     ]
     
   }

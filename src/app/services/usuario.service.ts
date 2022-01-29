@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap,map, catchError } from 'rxjs/operators';
+import { tap,map, catchError, delay } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 
 import { LoginForm } from '../interfaces/login-form';
 import { Usuario }  from '../models/usuario.model';
+import { ICargarUsuarios } from '../interfaces/cargar-usuarios';
 
 const base_url = environment.base_url;
 declare const gapi:any;
@@ -33,6 +34,14 @@ export class UsuarioService {
 
   get uid():string {
     return this.usuario.uid || '';
+  }
+
+  get headers(){
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
   }
 
   googleIni(){
@@ -61,7 +70,7 @@ export class UsuarioService {
       })
     });
 
-  };
+  }
 
 
   validarToken():Observable<boolean>{
@@ -85,7 +94,7 @@ export class UsuarioService {
     );
 
 
-  };
+  }
 
   crearUsuario( formData: RegisterForm){
     
@@ -95,7 +104,7 @@ export class UsuarioService {
         localStorage.setItem('token',resp.token)
       })
     )
-  };
+  }
 
   actualizarPerfil( data:{name:string, email:string, role:string, companiaID:string} ){
 
@@ -105,11 +114,7 @@ export class UsuarioService {
       companiaID: this.usuario.companiaID!
     };
     // http://localhost:3000/api/usuarios/61cb871217e594cb891cb502 met= put, body
-    return this.http.put(`${base_url}/usuarios/${this.uid}`, data, {
-      headers: {
-        'x-token': this.token
-      }
-    });
+    return this.http.put(`${base_url}/usuarios/${this.uid}`, data, this.headers);
   }
 
   login(formData: LoginForm){
@@ -120,7 +125,7 @@ export class UsuarioService {
                     localStorage.setItem('token',resp.token)
                   })
                 )
-  };
+  }
 
   loginGoogle(token:any){
     
@@ -131,4 +136,37 @@ export class UsuarioService {
                   })
                 )
   }
+
+  cargarUsuarios(desde: number=0){
+
+    // http://localhost:3000/api/usuarios?desde=5
+    const url = `${base_url}/usuarios?desde=${desde}`;
+    return this.http.get<ICargarUsuarios>( url, this.headers )
+            .pipe(
+              delay(500),
+              map( resp =>{
+                const usuarios = resp.usuarios.map(
+                  user => new Usuario(user.companiaID,user.name, user.email, '',user.img,user.google,user.role,user.uid)
+                );
+                
+                return {
+                  total: resp.total,
+                  usuarios
+                };
+              })
+            )
+  }
+
+  eliminarUsuario(usuario:Usuario){
+    //http://localhost:3000/api/usuarios/61ca5a060969833706007c72
+    const url = `${base_url}/usuarios/${usuario.uid}`;
+    return this.http.delete( url, this.headers );
+ }
+
+ guardarUsuario( usuario:Usuario ){
+
+  // http://localhost:3000/api/usuarios/61cb871217e594cb891cb502 met= put, body, headers
+  return this.http.put(`${base_url}/usuarios/${usuario.uid}`, usuario, this.headers);
+}
+
 }
