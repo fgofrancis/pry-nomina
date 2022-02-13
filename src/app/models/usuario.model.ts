@@ -1,11 +1,12 @@
 import { environment } from 'src/environments/environment';
+import { Compania } from './compania.model';
 
 const base_url = environment.base_url;
 
 export class Usuario {
 
     constructor (
-        public companiaID: string,
+        public companiaID: Compania,
         public name: string, 
         public email: string, 
         public password?: string, 

@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+
+import { Compania } from '../models/compania.model';
 import { Usuario } from '../models/usuario.model';
+import { Empleado } from '../models/empleado.model';
+
+import { environment } from 'src/environments/environment';
 
 const base_url = environment.base_url;
 
@@ -32,7 +36,16 @@ export class BusquedasService {
     );
   }
 
-  buscar(tipo: 'escalas'| 'usuarios'| 'empleados',
+  private transformarCompanias( resultados: any[]):Compania[]{
+
+    return resultados;
+  }
+  private transformarEmpleados( resultados: any[]):Empleado[]{
+
+    return resultados;
+  }
+
+  buscar(tipo: 'escalas'| 'usuarios'| 'empleados'|'companias',
          termino:string )
          {
     const url = `${base_url}/todo/coleccion/${tipo}/${termino}`;
@@ -42,7 +55,13 @@ export class BusquedasService {
             
             switch ( tipo) {
               case 'usuarios':
-                return this.transformarUsuarios(resp.resultados)
+                return this.transformarUsuarios(resp.resultados);
+
+              case 'empleados':
+                return this.transformarEmpleados(resp.resultados);
+
+              case 'companias':
+                return this.transformarCompanias(resp.resultados);
             
               default:
                 return [];

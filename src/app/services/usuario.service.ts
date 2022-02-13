@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { LoginForm } from '../interfaces/login-form';
 import { Usuario }  from '../models/usuario.model';
 import { ICargarUsuarios } from '../interfaces/cargar-usuarios';
+import { Compania } from '../models/compania.model';
 
 const base_url = environment.base_url;
 declare const gapi:any;
@@ -81,11 +82,11 @@ export class UsuarioService {
       }
     }).pipe(
       tap( (resp:any) =>{
-        // console.log(resp);
         const {companiaID, name, email, role, google, img, uid } = resp.usuarioDB
         this.usuario = new Usuario(companiaID,name,email,'',img,google,role,uid);
 
         localStorage.setItem('token',resp.token)
+    
       }),
       map(resp => true),
       catchError( error=> {
@@ -106,7 +107,7 @@ export class UsuarioService {
     )
   }
 
-  actualizarPerfil( data:{name:string, email:string, role:string, companiaID:string} ){
+  actualizarPerfil( data:{name:string, email:string, role:string, companiaID:Compania} ){
 
     data = {
       ...data,
@@ -136,7 +137,7 @@ export class UsuarioService {
                   })
                 )
   }
-
+ 
   cargarUsuarios(desde: number=0){
 
     // http://localhost:3000/api/usuarios?desde=5
@@ -148,7 +149,7 @@ export class UsuarioService {
                 const usuarios = resp.usuarios.map(
                   user => new Usuario(user.companiaID,user.name, user.email, '',user.img,user.google,user.role,user.uid)
                 );
-                
+
                 return {
                   total: resp.total,
                   usuarios

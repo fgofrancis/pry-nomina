@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { PagesRoutingModule } from './pages-routing.module';
-import { EmpleadoComponent } from './empleado/empleado.component';
-import { EscalasalarialComponent } from './escalasalarial/escalasalarial.component';
-import { ParametrosgeneralesComponent } from './parametrosgenerales/parametrosgenerales.component';
-import { AsignacionesComponent } from './asignaciones/asignaciones.component';
-import { DeduccionesComponent } from './deducciones/deducciones.component';
-import { ProcnominaComponent } from './procnomina/procnomina.component';
-import { ConstribucionleyComponent } from './constribucionley/constribucionley.component';
-import { PagesComponent } from './pages.component';
-import { SharedModule } from '../shared/shared.module';
-import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
-import { RxjsComponent } from './rxjs/rxjs.component';
-import { PerfilComponent } from './perfil/perfil.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ComponentsModule } from '../components/components.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PagesRoutingModule } from './pages-routing.module';
+
+import { PipesModule } from '../pipes/pipes.module';
+import { SharedModule } from '../shared/shared.module';
+
+import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
+import { AsignacionesComponent } from './asignaciones/asignaciones.component';
+import { CompaniaComponent } from './compania/compania.component';
+import { CompaniaMComponent } from './compania-m/compania-m.component';
+import { ConstribucionleyComponent } from './constribucionley/constribucionley.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
+import { EmpleadoMComponent } from './empleado/empleado-m.component';
+import { DeduccionesComponent } from './deducciones/deducciones.component';
+import { EscalasalarialComponent } from './escalasalarial/escalasalarial.component';
+import { PagesComponent } from './pages.component';
+import { ParametrosgeneralesComponent } from './parametrosgenerales/parametrosgenerales.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ProcnominaComponent } from './procnomina/procnomina.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+
 
 
 @NgModule({
@@ -32,7 +38,10 @@ import { ComponentsModule } from '../components/components.module';
     AcountSettingsComponent,
     RxjsComponent,
     PerfilComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    CompaniaComponent,
+    CompaniaMComponent,
+    EmpleadoMComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +49,8 @@ import { ComponentsModule } from '../components/components.module';
     SharedModule,
     ComponentsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PipesModule
   ]
 })
 export class PagesModule { }

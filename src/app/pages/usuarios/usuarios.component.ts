@@ -43,7 +43,7 @@ export class UsuariosComponent implements OnInit,OnDestroy {
       )
         .subscribe(img => {
           this.cargarUsuario()
-        } );
+        });
   }
 
   cargarUsuario(){
@@ -79,7 +79,7 @@ export class UsuariosComponent implements OnInit,OnDestroy {
     }
 
     this._busquedaService.buscar('usuarios', termino)
-            .subscribe( resultados =>{
+            .subscribe( (resultados:any) =>{
               this.usuarios = resultados;
             })
     return;  
