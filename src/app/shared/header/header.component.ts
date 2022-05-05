@@ -7,8 +7,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: [
-  ]
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 

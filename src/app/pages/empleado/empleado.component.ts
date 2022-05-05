@@ -64,7 +64,7 @@ export class EmpleadoComponent implements OnInit, OnDestroy{
     this._empleadoService.borrarEmpleado(empleado._id)
         .subscribe(resp=>{
            this.cargandoEmpleado();
-          Swal.fire( 'Eliminado','empleado.name1','success' );
+          Swal.fire( 'Eliminado',`Empleado ${empleado.name1} ${empleado.apell1}`,'success' );
         })
   }
 

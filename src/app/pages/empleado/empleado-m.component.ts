@@ -28,7 +28,7 @@ export class EmpleadoMComponent implements OnInit {
                private _activatedRoute:ActivatedRoute) {}
 
   ngOnInit(): void {
-    
+     
     this._activatedRoute.params.subscribe(({id}) => this.cargarEmpleado(id));
 
   
@@ -47,7 +47,6 @@ export class EmpleadoMComponent implements OnInit {
    });
  
    this.cargarCompanias();
-   console.log('cargarCompanias..: ', this.companias);
    
    // Esto es un observable para cada vez q cambie una compania en lo combox
    this.formEmpleado.get('companiaID')?.valueChanges
@@ -61,11 +60,10 @@ export class EmpleadoMComponent implements OnInit {
   }
 
   cargarEmpleado(id:string){
-    console.log('id..: ', id);
 
     if ( id === 'nuevo' ) {
       return;
-    }
+    } 
       this._empleadoService.obtenerEmpleadoByID(id)
         .pipe(
           delay(100)
@@ -93,7 +91,7 @@ export class EmpleadoMComponent implements OnInit {
         })
   }
   crearEmpleado(){
-  
+
     const {name1,name2, apell1, apell2 }= this.formEmpleado.value
 
     if (this.empleadoSeleccionado){
@@ -105,8 +103,8 @@ export class EmpleadoMComponent implements OnInit {
 
       this._empleadoService.actualizarEmpleado( data )
           .subscribe(resp =>{
-            console.log('Actualizado..: ', resp);
-            Swal.fire( 'Actualizado',`${this.nombreCompleto(name1,name2, apell1, apell2 )} actualizado correctamente`,
+            // console.log('Actualizado..: ', resp);
+            Swal.fire( 'Actualizado',`${this._empleadoService.nombreCompleto(name1,name2, apell1, apell2 )} actualizado correctamente`,
                        'success' );
           })
     }else{
@@ -114,31 +112,14 @@ export class EmpleadoMComponent implements OnInit {
       this._empleadoService.crearEmpleado(this.formEmpleado.value)
             .subscribe((resp:any) =>{
 
-              Swal.fire( 'Registrado',`${this.nombreCompleto(name1,name2, apell1, apell2 )} registrado correctamente`,
+              Swal.fire( 'Registrado',`${this._empleadoService.nombreCompleto(name1,name2, apell1, apell2 )} registrado correctamente`,
                          'success' );
-              this._router.navigateByUrl(`/nomina/empleado/`);
+
+              this._router.navigateByUrl(`/nomina/empleado`);
               // this._router.navigateByUrl(`/nomina/empleadoM/${resp.empleado._id}`);
             })
     }
   
   }
-
-  nombreCompleto(name1:string,name2:string, apell1:string, apell2:string){
-    let nombres, apellidos, nombreCompleto = '';
-    if(name2!== null) {
-        nombres = name1 +' '+ name2
-    }else{
-      nombres = name1
-    }
-
-    if(apell2 !== null) {
-        apellidos = apell1 + ' ' + apell2 
-    }else{
-      apellidos = apell1
-    }
-
-    return nombreCompleto =`${nombres} ${apellidos}`// nombres + apellidos
-    
-  }
-
+ 
 }

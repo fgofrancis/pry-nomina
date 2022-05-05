@@ -63,4 +63,21 @@ export class EmpleadoService {
     return this.http.delete( url, this.headers );
   }
 
+  nombreCompleto(name1:string,name2:string, apell1:string, apell2:string){
+    let nombres, apellidos, nombreCompleto = '';
+    if(name2!== null) {
+        nombres = name1 +' '+ name2
+    }else{
+      nombres = name1
+    }
+
+    if(apell2 !== null) {
+        apellidos = apell1 + ' ' + apell2 
+    }else{
+      apellidos = apell1
+    }
+
+    return nombreCompleto =`${nombres} ${apellidos}`// nombres + apellidos
+    
+  }
 }
