@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -14,6 +14,9 @@ declare const gapi:any;
 })
 export class LoginComponent implements OnInit {
 
+  // No lo estoy usando pero lo debo usar
+  // @ViewChild('googleBtn') googleBtn!:ElementRef;
+  
   public formSubmitted= false;
   public auth2: any;
 

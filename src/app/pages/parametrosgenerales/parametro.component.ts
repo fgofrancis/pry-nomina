@@ -26,11 +26,15 @@ export class ParametroComponent implements OnInit {
   ngOnInit(): void {
 
     this._activatedRoute.params.subscribe(({id}) => this.cargarParametro(id));
-
+ 
     this.formParametro = this.fb.group({
-      smp:['', Validators.required],
-      sfs:['', Validators.required],
-      svds:['', Validators.required]
+      salarioMinPromedio: ['', Validators.required],
+      SFStasaEmpleado:    ['', Validators.required],
+      SFStasaPatron:      ['', Validators.required],
+      SVDStasaEmpleado:   ['', Validators.required],
+      SVDStasaPatron:     ['', Validators.required],
+      seguroRiesgoLaboral:['', Validators.required],
+      salarioMinTSS:      ['', Validators.required]
     })
   }
 
@@ -43,14 +47,46 @@ export class ParametroComponent implements OnInit {
     this._parametroService.obtenerParametroByID(id)
           .subscribe(parametro =>{
 
-            const { smp, sfs,svds } =parametro;
-            this.formParametro.setValue( {  smp, sfs,svds });
+            const { 
+               salarioMinPromedio,
+               seguroFamiliarSalud:{tasaEmpleado:SFStasaEmpleado, tasaPatron:SFStasaPatron},
+               seguroVejezDiscapSobrevivencia:{tasaEmpleado:SVDStasaEmpleado, tasaPatron:SVDStasaPatron},
+               seguroRiesgoLaboral, 
+               salarioMinTSS
+              //  fechaRegistro             
+            } = parametro;
+
+            this.formParametro.setValue( { 
+              salarioMinPromedio, SFStasaEmpleado, SFStasaPatron,
+              SVDStasaEmpleado,SVDStasaPatron, seguroRiesgoLaboral,
+              salarioMinTSS
+              // fechaRegistro
+            });
             this.parametroSeleccionado = parametro;
           })
 
   }
-
+ 
   crearParametro(){
+
+    //Tomando la data del formulario
+    const { salarioMinPromedio, SFStasaEmpleado, SFStasaPatron,
+            SVDStasaEmpleado,SVDStasaPatron, seguroRiesgoLaboral,
+            salarioMinTSS, 
+            fechaRegistro
+    } = this.formParametro.value;
+
+    //Formateando la data como la recibe la API
+    const data = {
+      ...this.formParametro.value,
+      salarioMinPromedio,
+      seguroFamiliarSalud:{tasaEmpleado:SFStasaEmpleado, tasaPatron:SFStasaPatron},
+      seguroVejezDiscapSobrevivencia:{tasaEmpleado:SVDStasaEmpleado, tasaPatron:SVDStasaPatron},
+      seguroRiesgoLaboral, 
+      salarioMinTSS,
+      fechaRegistro
+    }
+ 
     if (this.parametroSeleccionado){
       //Actualizar
       const data = {
@@ -65,7 +101,8 @@ export class ParametroComponent implements OnInit {
 
     }else{
       //crear
-      this._parametroService.crearParametro(this.formParametro.value)
+      console.log('Datos: ', this.formParametro.value)
+      this._parametroService.crearParametro(data)
           .subscribe( resp=>{
             Swal.fire( 'Registrado',`Parametros creados exitosamente` ,'success' );
             this._router.navigateByUrl('/nomina/parametros');

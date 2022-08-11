@@ -19,9 +19,10 @@ import { ParametroComponent } from './parametrosgenerales/parametro.component';
 import { ParametrosgeneralesComponent } from './parametrosgenerales/parametrosgenerales.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ProcnominaComponent } from './procnomina/procnomina.component';
+import { NominaDetalleComponent} from './procnomina/nomina-detalle.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-
+  
 const routes: Routes = [
   { 
     path:'', component: PagesComponent,
@@ -53,7 +54,11 @@ const routes: Routes = [
       { path:'parametros/:id', component:ParametroComponent, data:{titulo: 'Parámetro'}},
       
       { path:'perfil', component: PerfilComponent, data:{titulo: 'Perfil de usuario'}},
-      { path:'prcnomina', component:ProcnominaComponent, data:{titulo: 'Generaciòn de Nòmina'}},
+      
+      { path:'prcnomina', component:ProcnominaComponent, data:{titulo: 'Generación de Nómina'}},
+      { path:'prcnomina/:idProcess', component:NominaDetalleComponent, data:{titulo: 'Nómina Detalle'}},
+      { path:'prcnomina/:idProcess/:idEmpleado', component:NominaDetalleComponent, data:{titulo: 'Nómina Detalle'}},
+     
       { path:'rxjs', component: RxjsComponent, data:{titulo: 'Rxjs'}},
       { path:'usuario', component: UsuariosComponent, data:{titulo: 'Mantenimiento de Usuarios'}}
     ]

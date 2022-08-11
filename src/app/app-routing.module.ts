@@ -11,7 +11,11 @@ const routes: Routes = [
     path:'auth',
     loadChildren: ()=> import('./auth/auth.module').then(a => a.AuthModule)
   },
-
+  {
+    path:'contabilidad',
+    loadChildren: ()=> import('./contabilidad/contabilidad.module').then(c => c.ContabilidadModule)
+  },
+  
   { path: '', redirectTo: '/nomina', pathMatch: 'full' },
   { path: '**', component:NopagefoundComponent },
   

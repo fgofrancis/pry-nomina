@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Parametro } from 'src/app/models/parametro.model';
 
@@ -14,13 +15,14 @@ import Swal from 'sweetalert2';
 export class ParametrosgeneralesComponent implements OnInit {
 
   public parametros:Parametro[] = [];
+  parametro$: Observable<Parametro[]> = new Observable();
 
   constructor( private _parametroService: ParametroService) { }
 
   ngOnInit(): void {
-    this.cargarParametro();
+     this.cargarParametro();
   }
-
+ 
   cargarParametro(){
     this._parametroService.cargarParametros()
         .subscribe(resp =>{

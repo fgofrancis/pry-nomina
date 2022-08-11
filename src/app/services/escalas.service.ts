@@ -7,7 +7,7 @@ import { EscalaSalarial } from '../models/escalaSalaria-model';
 
 const base_url = environment.base_url;
 
-
+ 
 @Injectable({
   providedIn: 'root'
 })

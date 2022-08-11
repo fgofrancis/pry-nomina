@@ -13,7 +13,7 @@ const base_url = environment.base_url;
 @Injectable({
   providedIn: 'root'
 })
-
+ 
 export class DeduccionService {
   
   constructor( private http:HttpClient, 
@@ -42,6 +42,21 @@ export class DeduccionService {
                 )
   }
   
+  obtenerDeduccionesByID(_id:string){
+    // http://localhost:3000/api/asignaciones/6211668f57175fb8ab3e46fb
+    const url =`${base_url}/deducciones/${_id}`;
+    return this.http.get<any>(url,this.headers )
+                .pipe(
+                  map( (resp: {ok:boolean, deduccion:Deduccion }) => resp.deduccion)
+                )
+  }
+
+  actualizarDeduccion(deduccion:Deduccion){
+    //http://localhost:3000/api/asignaciones/61e050f884eb7bd8ad11d585
+    const url = `${base_url}/deducciones/${deduccion._id}`;
+    return this.http.put( url, deduccion, this.headers );
+  }
+
   crearDeduccion(deduccion:Deduccion){
   
     //http://localhost:3000/api/deducciones
@@ -49,7 +64,7 @@ export class DeduccionService {
     return this.http.post( url, deduccion, this.headers );
   }
 
-
+ 
   borrarDeduccion(_id:string){
     // http://localhost:3000/api/deducciones/6211668f57175fb8ab3e46fb
     const url =`${base_url}/deducciones/${_id}`;

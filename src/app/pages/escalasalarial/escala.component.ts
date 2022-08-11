@@ -20,7 +20,7 @@ export class EscalaComponent implements OnInit {
                private _escalaService:EscalaService,
                private _router:Router,
                private _activatedRoute:ActivatedRoute){}
-
+ 
   ngOnInit(): void {
 
     this._activatedRoute.params.subscribe(({id}) => this.cargarEscala(id));

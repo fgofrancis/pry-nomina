@@ -1,19 +1,19 @@
 import { Empleado } from "./empleado.model";
 import { Usuario } from "./usuario.model";
 
-interface  ISalarioCotizableTSS {
+export interface  ISalarioCotizableTSS {
     salario:number,
     comisiones?:number,
     vacaciones?:number
 }
  
-interface IOtrasRemuneraciones {
+export interface IOtrasRemuneraciones {
     horasExtraDiasFeriados?:number,
     otrosIngresos?:number,
     bonosTrimestrales?:number
 }
 
-interface  IIngresosExentoISR {
+export interface  IIngresosExentoISR {
     regaliaPascual?:number,
     indemnizacionesLaborales?:number,
     preavisoYCesantia?:number

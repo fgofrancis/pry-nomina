@@ -28,9 +28,9 @@ export class RetencionLeyService {
       // servicio estos cambios no se reflejaran
      this._parametroService.cargarParametros()
         .subscribe(parametro=>{
-           this.sfs = parametro[0].sfs
-           this.smp = parametro[0].smp
-           this.svds = parametro[0].svds
+           this.sfs  = parametro[0].seguroFamiliarSalud.tasaEmpleado
+           this.smp  = parametro[0].salarioMinPromedio
+           this.svds = parametro[0].seguroVejezDiscapSobrevivencia.tasaEmpleado
      });
 
      //Buscar datos de la escala salarial
@@ -101,13 +101,13 @@ export class RetencionLeyService {
     var ret_afp = 0;
 
     if(salario > (this.smp * 20)){
-      console.log('Mayor', ret_afp, (this.smp * 20),  this.svds)
-      ret_afp =  (this.smp * 20) * this.svds;
+      // console.log('Mayor', ret_afp, (this.smp * 20),  this.svds)
+      ret_afp =  (this.smp * 20) * (this.svds / 100);
       ret_afp = ret_afp / 2;
 
     }else{
-      // console.log('Menor', ret_afp, (salario),  this.svds)
-      ret_afp =  salario * this.svds;
+      //  console.log('Menor', ret_afp, (salario),  this.svds)
+      ret_afp =  salario * (this.svds / 100);
       ret_afp = ret_afp / 2;
 
     }

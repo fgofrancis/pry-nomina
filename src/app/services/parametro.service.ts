@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Parametro} from '../models/parametro.model'
+import { Observable, Subject } from 'rxjs';
 
 const base_url = environment.base_url;
 
@@ -10,6 +11,8 @@ const base_url = environment.base_url;
   providedIn: 'root'
 })
 export class ParametroService {
+
+  private parametro$: Subject<Parametro[]> = new Subject();
 
   constructor( private http:HttpClient ) { }
 
@@ -25,6 +28,7 @@ export class ParametroService {
       }
     }
   }
+ 
 
   cargarParametros(){
     //http://localhost:3000/api/parametros
@@ -38,6 +42,7 @@ export class ParametroService {
   crearParametro(parametro:Parametro){
     //http://localhost:3000/api/parametros
     const url = `${base_url}/parametros`;
+    console.log('url..: ', url)
     return this.http.post( url, parametro, this.headers );
   }
 

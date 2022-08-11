@@ -157,7 +157,7 @@ export class UsuarioService {
               })
             )
   }
-
+ 
   eliminarUsuario(usuario:Usuario){
     //http://localhost:3000/api/usuarios/61ca5a060969833706007c72
     const url = `${base_url}/usuarios/${usuario.uid}`;

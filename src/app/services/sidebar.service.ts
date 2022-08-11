@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class SidebarService {
 
   menu: any[]= [
-    {
+    { 
       titulo:'Nómina',
       icono:'mdi mdi-gauge',
       submenu:[
@@ -17,16 +17,17 @@ export class SidebarService {
         {titulo: 'Asignaciones', url:'/nomina/asignaciones'},
         {titulo: 'Deducciones', url:'/nomina/deducciones'},
         {titulo: 'Rxjs', url:'/nomina/rxjs'},
-        {titulo: 'Usuario', url:'/nomina/usuario'}
+        {titulo: 'Usuario', url:'/nomina/usuario'},
+        {titulo: 'Proceso Nómina', url:'/nomina/prcnomina'}
       ]
     },
     {
       titulo:'Contabilidad',
       icono:'mdi mdi-folder-lock-open',
       submenu:[
-        {titulo: 'Balace general', url:'/nomina/empleado'},
-        {titulo: 'Entrada de Diario', url:'/nomina/escala'},
-        {titulo: 'Balanza de comprobación', url:'/nomina/parametros'}
+        {titulo: 'Balace generalyy', url:'/contabilidad/balance'},
+        {titulo: 'Entrada de Diario', url:'/contabilidad/entradadiario'},
+        {titulo: 'Balanza de comprobación', url:'/contabilidad/balanzacomprobacion'}
       ]
     }
   ];

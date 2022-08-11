@@ -26,7 +26,7 @@ import { EscalaComponent } from './escalasalarial/escala.component';
 import { ParametroComponent } from './parametrosgenerales/parametro.component';
 import { AsignacionComponent } from './asignaciones/asignacion.component';
 import { DeduccionComponent } from './deducciones/deduccion.component';
-
+import { NominaDetalleComponent } from './procnomina/nomina-detalle.component';
 
 
 @NgModule({
@@ -49,7 +49,9 @@ import { DeduccionComponent } from './deducciones/deduccion.component';
     EscalaComponent,
     ParametroComponent,
     AsignacionComponent,
-    DeduccionComponent
+    DeduccionComponent,
+    NominaDetalleComponent,
+
 
   ],
   imports: [

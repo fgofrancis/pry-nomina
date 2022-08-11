@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent {
 
+  
   public formSubmitted= false;
 
   public registerForm = this.fb.group({
@@ -31,7 +32,7 @@ export class RegistroComponent {
 
   crearUsuario(){
     this.formSubmitted = true;
-    console.log(this.registerForm.value);
+    // console.log(this.registerForm.value);
 
     if( this.registerForm.invalid  ){
       return;

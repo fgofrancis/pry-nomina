@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { ComponentsModule } from './components/components.module';
+import { ContabilidadModule } from './contabilidad/contabilidad.module';
 
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 
@@ -24,6 +25,7 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
     SharedModule,
     PagesModule,
     AuthModule,
+    ContabilidadModule,
     ComponentsModule
   ],
   providers: [],

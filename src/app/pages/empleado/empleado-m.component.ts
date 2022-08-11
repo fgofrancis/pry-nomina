@@ -28,7 +28,7 @@ export class EmpleadoMComponent implements OnInit {
                private _activatedRoute:ActivatedRoute) {}
 
   ngOnInit(): void {
-     
+    // toma todos los parametros q vienen desde la url 
     this._activatedRoute.params.subscribe(({id}) => this.cargarEmpleado(id));
 
   

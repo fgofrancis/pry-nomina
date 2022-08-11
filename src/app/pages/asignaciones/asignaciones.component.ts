@@ -29,13 +29,13 @@ export class AsignacionesComponent implements OnInit {
     this._asignacionService.cargarAsignaciones()
         .subscribe(resp=>{
           this.asignaciones = resp;
-
+ 
           const asignWork = resp.map( (arrayWork)=>{
             const _id = arrayWork._id;
             const nombre = arrayWork.empleado.name1
             const salarioCotizableTSS = arrayWork.salarioCotizableTSS.salario +
-                                         arrayWork.salarioCotizableTSS.comisiones!+
-                                         arrayWork.salarioCotizableTSS.vacaciones!
+                                        arrayWork.salarioCotizableTSS.comisiones!+
+                                        arrayWork.salarioCotizableTSS.vacaciones!
 
             const otrasRemuneraciones =  arrayWork.otrasRemuneraciones.bonosTrimestrales! +
                                          arrayWork.otrasRemuneraciones.horasExtraDiasFeriados! +

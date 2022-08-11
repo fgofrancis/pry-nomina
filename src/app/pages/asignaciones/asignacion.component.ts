@@ -40,7 +40,7 @@ export class AsignacionComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedRoute.params.subscribe(({id}) => this.cargarAsignacion(id));
-
+ 
     this.formAsignacion = this.fb.group({
       empleado:['',Validators.required],
       salario:['',Validators.required],
@@ -74,27 +74,29 @@ export class AsignacionComponent implements OnInit {
   }
 
   crearAsignacion(){
-    
-    const { salario,comisiones,vacaciones,
+    // tomando los valores del formulario
+    const { 
+      salario,comisiones,vacaciones,
       horasExtraDiasFeriados, otrosIngresos,bonosTrimestrales,
       regaliaPascual, indemnizacionesLaborales,preavisoYCesantia,
       reembolsos
     } = this.formAsignacion.value
 
+    //formando la data como la recibe la API
     const data = {
-     ...this.formAsignacion.value,
-     salarioCotizableTSS: {salario:salario, comisiones: comisiones, vacaciones:vacaciones },
-     otrasRemuneraciones: {horasExtraDiasFeriados, otrosIngresos, bonosTrimestrales},
-     ingresosExentoISR: {regaliaPascual, indemnizacionesLaborales, preavisoYCesantia} 
-   
+       ...this.formAsignacion.value,
+       salarioCotizableTSS: {salario:salario, comisiones: comisiones, vacaciones:vacaciones },
+       otrasRemuneraciones: {horasExtraDiasFeriados, otrosIngresos, bonosTrimestrales},
+       ingresosExentoISR:   {regaliaPascual, indemnizacionesLaborales, preavisoYCesantia} 
     }
+
     //Totales:
     this.salarioCotizableTSS = salario + comisiones + vacaciones; 
     this.otrasRemuneraciones = horasExtraDiasFeriados + otrosIngresos + bonosTrimestrales; 
     this.ingresosExentoISR   = regaliaPascual + indemnizacionesLaborales + preavisoYCesantia
     
-    this.totalRenglones = this.salarioCotizableTSS + this.otrasRemuneraciones + this.ingresosExentoISR 
-                          + reembolsos;
+    this.totalRenglones = this.salarioCotizableTSS + this.otrasRemuneraciones
+                         + this.ingresosExentoISR  + reembolsos;
 
     // Calculo para la TSS y ISR
     this.salarioCotizableTSS1 = (salario) * 2 + comisiones + vacaciones;
@@ -103,12 +105,12 @@ export class AsignacionComponent implements OnInit {
     if (this.asignacionSeleccionada){
       //Actualiza
       const data = {
-        ...this.formAsignacion.value,
-        salarioCotizableTSS: {salario:salario, comisiones: comisiones, vacaciones:vacaciones },
-        otrasRemuneraciones: {horasExtraDiasFeriados, otrosIngresos, bonosTrimestrales},
-        ingresosExentoISR:   {regaliaPascual, indemnizacionesLaborales, preavisoYCesantia},
-        _id:this.asignacionSeleccionada._id
-       }
+         ...this.formAsignacion.value,
+         salarioCotizableTSS: {salario:salario, comisiones: comisiones, vacaciones:vacaciones },
+         otrasRemuneraciones: {horasExtraDiasFeriados, otrosIngresos, bonosTrimestrales},
+         ingresosExentoISR:   {regaliaPascual, indemnizacionesLaborales, preavisoYCesantia},
+         _id:this.asignacionSeleccionada._id
+      }
       
       this._asignacionSevice.actualizarAsignacion(data)
           .subscribe(resp=>{
@@ -121,7 +123,7 @@ export class AsignacionComponent implements OnInit {
           .subscribe(resp=>{
   
             Swal.fire( 'Registrado', 'asignación registrada correctamente','success' );
-            // this._router.navigateByUrl(`/nomina/asignaciones`);
+            this._router.navigateByUrl(`/nomina/asignaciones`);
   
           })
     }
@@ -151,7 +153,7 @@ export class AsignacionComponent implements OnInit {
           const { empleado:{_id},
                   salarioCotizableTSS: {salario:salario, comisiones: comisiones, vacaciones:vacaciones },
                   otrasRemuneraciones: {horasExtraDiasFeriados, otrosIngresos, bonosTrimestrales},
-                  ingresosExentoISR: {regaliaPascual, indemnizacionesLaborales, preavisoYCesantia}, 
+                  ingresosExentoISR:   {regaliaPascual, indemnizacionesLaborales, preavisoYCesantia}, 
                   reembolsos ,fechaRegistro
                 }= asignacion;
 
@@ -175,5 +177,4 @@ export class AsignacionComponent implements OnInit {
 
         })
   }
-
 }

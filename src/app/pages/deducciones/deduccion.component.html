@@ -36,6 +36,7 @@
                                     <input type="text"
                                            class="form-control"
                                             [value]="nombreCompleto"
+                                            [disabled]="true"
                                            placeholder="Nombre">
                                     <small class="form-control-feedback"> This field has error. </small> </div>
                                     <!-- [value]="nombreCompleto"
@@ -50,6 +51,7 @@
                                     <input type="text"
                                            class="form-control"
                                            [value]="salarioMensual | number:'1.2-2'"
+                                           [disabled]="true"
                                            placeholder="Sueldo">
                                     <small class="form-control-feedback"> Salario Cot. TSS: {{salarioCotizableISR| number:'1.2-2'}} </small> </div>
                                     <!-- [value]="salarioMensual | number:'1.2-2'" 
@@ -66,7 +68,7 @@
                                 <div class="col-md-8">
                                     <input type="number"
                                            class="form-control"
-                                           [value]="rSFS"
+                                           formControlName="sfs"
                                            placeholder="sfs">
                                     <small class="form-control-feedback">Seguro familiar de salud. </small> </div>
                             </div>
@@ -78,7 +80,7 @@
                                 <div class="col-md-8">
                                     <input type="number"
                                            class="form-control"
-                                           [value]="rAFP"
+                                           formControlName="afp"
                                            placeholder="afp">
                                     <small class="form-control-feedback"> Administradora de fondos de pensiones. </small> </div>
                             </div>
@@ -90,7 +92,6 @@
                                 <div class="col-md-8">
                                     <input type="number"
                                            class="form-control"
-                                           [value]="rISR"
                                            formControlName="retISR"
                                            placeholder="ISR">
                                     <small class="form-control-feedback"> Impuesto sobre la renta. </small> </div>
@@ -103,7 +104,7 @@
                                 <div class="col-md-8">
                                     <input type="number"
                                            class="form-control"
-                                           formControlName="depAdicTSS"
+                                           formControlName="depAdicTSS" 
                                            placeholder="Dep. TSS">
                                     <small class="form-control-feedback"> Tesorería de seguridad social. </small> </div>
                             </div>
